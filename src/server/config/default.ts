@@ -28,7 +28,7 @@ const customConfig: {
   refreshTokenPublicKey: process.env.REFRESH_TOKEN_PUBLIC_KEY as string,
   channelAccessToken:process.env.CHANNEL_ACCESS_TOKEN as string,
   channelSecret:process.env.CHANNEL_SECRET as string,
-  openAIApiKey:process.env.OPEN_API_KEY as string,
+  openAIApiKey:process.env.OPENAI_API_KEY as string,
   superbaseUrl:process.env.SUPABASE_URL as string,
   superbaseKey:process.env.SUPABASE_KEY as string
 };

@@ -8,7 +8,7 @@ export const webhook = async ({ ctx }: { ctx: Context }):Promise<any> => {
    const events = ctx.req.body.events 
    if(events.length ==  0) { return ctx.res.status(200).send("OK") }
    if(events[0] .message.type === "text"){
-        return client.replyMessage(events[0] .replyToken,{type:"text",text: await openAICompletion(events[0].message.text) as string});
+        return client.replyMessage(events[0] .replyToken,{type:"text",text: await openAICompletion(events[0].message.text,events[0].source.userId) as string});
    } 
   } catch (err: any) {
     throw new TRPCError({

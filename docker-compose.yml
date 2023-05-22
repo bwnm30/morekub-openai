@@ -1,0 +1,35 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - '6500:5432'
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis:/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json # preconfigured servers/connections
+      - ./pgpass:/pgpass # passwords for the connections in this file
+volumes:
+  postgres-db:
+  redis:
+  pgadmin:
